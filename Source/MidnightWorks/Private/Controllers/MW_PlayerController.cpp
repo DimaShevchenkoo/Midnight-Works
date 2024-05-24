@@ -17,7 +17,6 @@ void AMW_PlayerController::SetupInputComponent()
 	{
 		EIC->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ThisClass::Move);
 		EIC->BindAction(CameraAction, ETriggerEvent::Triggered, this, &ThisClass::RotateCamera);
-		//EIC->BindAction(InteractAction, ETriggerEvent::Started, this, &ThisClass::Interact);
 	}
 }
 

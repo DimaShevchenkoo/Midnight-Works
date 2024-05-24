@@ -20,7 +20,6 @@ protected:
 	void RotateCamera(const FInputActionValue& Value);
 
 	virtual void SetupInputComponent() override;
-	virtual void OnPossess(APawn* InPawn) override;
 
 private:
 
@@ -33,6 +32,4 @@ private:
 	UPROPERTY(EditAnywhere)
 	UInputAction* CameraAction;
 
-	UPROPERTY(EditAnywhere)
-	UInputAction* InteractAction;
 };
