@@ -6,6 +6,9 @@
 #include "GameFramework/Character.h"
 #include "MW_PlayerCharacter.generated.h"
 
+class UCameraComponent;
+class USpringArmComponent;
+
 UCLASS()
 class MIDNIGHTWORKS_API AMW_PlayerCharacter : public ACharacter
 {
@@ -13,4 +16,11 @@ class MIDNIGHTWORKS_API AMW_PlayerCharacter : public ACharacter
 
 public:
 	AMW_PlayerCharacter();
+
+private:
+	UPROPERTY(EditDefaultsOnly)
+	USpringArmComponent* SpringArmComponent;
+
+	UPROPERTY(EditDefaultsOnly)
+	UCameraComponent* CameraComponent;
 };

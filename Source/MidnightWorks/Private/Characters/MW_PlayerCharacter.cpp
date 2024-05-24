@@ -2,7 +2,16 @@
 
 #include "MidnightWorks/Public/Characters/MW_PlayerCharacter.h"
 
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
+
 AMW_PlayerCharacter::AMW_PlayerCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
+	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>("Spring Arm");
+	SpringArmComponent->SetupAttachment(GetRootComponent());
+
+	CameraComponent = CreateDefaultSubobject<UCameraComponent>("Camera");
+	CameraComponent->SetupAttachment(SpringArmComponent);
 }
