@@ -14,7 +14,10 @@ class MIDNIGHTWORKS_API UMW_CharacterOverlayWidget : public UUserWidget
 	GENERATED_BODY()
 
 public:
+	void ConvertTextBlockToString(int32& OutValue);
 	void DecreaseCoinsCountTextBlockValue(int32 NewValue);
+
+	int32 GetCoinCountValue();
 
 private:
 	UPROPERTY(meta=(BindWidget))

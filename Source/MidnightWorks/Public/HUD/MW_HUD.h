@@ -6,6 +6,7 @@
 #include "GameFramework/HUD.h"
 #include "MW_HUD.generated.h"
 
+class UMW_VictoryWidget;
 class UMW_CharacterOverlayWidget;
 
 UCLASS()
@@ -26,9 +27,9 @@ private:
 	UPROPERTY()
 	UMW_CharacterOverlayWidget* CharacterOverlayWidget;
 
-	/*UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidget> VictoryWidgetClass;
 
 	UPROPERTY()
-	UMW_CharacterOverlayWidget* VictoryWidget;*/
+	UMW_VictoryWidget* VictoryWidget;
 };

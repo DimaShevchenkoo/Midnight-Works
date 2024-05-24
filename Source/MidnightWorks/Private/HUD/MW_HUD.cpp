@@ -5,7 +5,7 @@
 
 #include "Blueprint/UserWidget.h"
 #include "Widgets/Game/MW_CharacterOverlayWidget.h"
-
+#include "Widgets/Game/MW_VictoryWidget.h"
 
 void AMW_HUD::BeginPlay()
 {
@@ -35,4 +35,22 @@ void AMW_HUD::DecreaseCoinsCountTextBlockValue(int32 NumToDecrease)
 		return;
 	}
 	CharacterOverlayWidget->DecreaseCoinsCountTextBlockValue(NumToDecrease);
+
+	if (CharacterOverlayWidget->GetCoinCountValue() <= 0)
+	{
+		if (!GetOwningPlayerController())
+		{
+			UE_LOG(LogTemp, Warning, TEXT("GetOwningPlayerController() - nullptr"))
+			return;
+		}
+
+		VictoryWidget = CreateWidget<UMW_VictoryWidget>(GetOwningPlayerController(), VictoryWidgetClass);
+		if (!VictoryWidget)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("VictoryWidget - nullptr"))
+			return;
+		}
+
+		VictoryWidget->AddToViewport();
+	}
 }
