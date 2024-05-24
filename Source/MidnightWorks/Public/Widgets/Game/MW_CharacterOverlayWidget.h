@@ -6,9 +6,17 @@
 #include "Blueprint/UserWidget.h"
 #include "MW_CharacterOverlayWidget.generated.h"
 
+class UTextBlock;
+
 UCLASS()
 class MIDNIGHTWORKS_API UMW_CharacterOverlayWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
+public:
+	void DecreaseCoinsCountTextBlockValue(int32 NewValue);
+
+private:
+	UPROPERTY(meta=(BindWidget))
+	UTextBlock* CoinsCountTextBlock;
 };

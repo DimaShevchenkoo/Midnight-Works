@@ -4,6 +4,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Characters/MW_PlayerCharacter.h"
+#include "HUD/MW_HUD.h"
 
 void AMW_PlayerController::SetupInputComponent()
 {
@@ -62,4 +63,23 @@ void AMW_PlayerController::StopJumping(const FInputActionValue& Value)
 	if (!PlayerCharacter) return;
 
 	PlayerCharacter->StopJumping();
+}
+
+void AMW_PlayerController::BeginPlay()
+{
+	Super::BeginPlay();
+
+	FInputModeGameOnly GameOnly;
+	SetInputMode(GameOnly);
+}
+
+void AMW_PlayerController::DecreaseCoinsCountTextBlockValue(int32 NumToDecrease)
+{
+	HUD = HUD ? HUD : GetHUD<AMW_HUD>();
+	if (!HUD)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("HUD - nullptr"));
+		return;
+	}
+	HUD->DecreaseCoinsCountTextBlockValue(NumToDecrease);
 }

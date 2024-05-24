@@ -6,9 +6,29 @@
 #include "GameFramework/HUD.h"
 #include "MW_HUD.generated.h"
 
+class UMW_CharacterOverlayWidget;
+
 UCLASS()
 class MIDNIGHTWORKS_API AMW_HUD : public AHUD
 {
 	GENERATED_BODY()
-	
+
+public:
+	void DecreaseCoinsCountTextBlockValue(int32 NumToDecrease);
+
+protected:
+	virtual void BeginPlay() override;
+
+private:
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUserWidget> CharacterOverlayWidgetClass;
+
+	UPROPERTY()
+	UMW_CharacterOverlayWidget* CharacterOverlayWidget;
+
+	/*UPROPERTY(EditAnywhere)
+	TSubclassOf<UUserWidget> VictoryWidgetClass;
+
+	UPROPERTY()
+	UMW_CharacterOverlayWidget* VictoryWidget;*/
 };
