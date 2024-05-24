@@ -6,12 +6,11 @@
 #include "GameFramework/PlayerController.h"
 #include "MW_MainMenuPlayerController.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class MIDNIGHTWORKS_API AMW_MainMenuPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-	
+
+protected:
+	virtual void BeginPlay() override;
 };

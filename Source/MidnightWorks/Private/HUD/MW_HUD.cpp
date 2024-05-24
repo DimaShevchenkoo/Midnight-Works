@@ -11,7 +11,7 @@ void AMW_HUD::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (!GetOwningPlayerController()) return;
+	if (!GetOwningPlayerController() || !CharacterOverlayWidgetClass) return;
 
 	CharacterOverlayWidget = CreateWidget<UMW_CharacterOverlayWidget>(GetOwningPlayerController(), CharacterOverlayWidgetClass);
 	if (!CharacterOverlayWidget) return;
@@ -28,7 +28,7 @@ void AMW_HUD::DecreaseCoinsCountTextBlockValue(int32 NumToDecrease)
 
 void AMW_HUD::CreateVictoryWidget()
 {
-	if (!GetOwningPlayerController()) return;
+	if (!GetOwningPlayerController() || !VictoryWidgetClass) return;
 
 	VictoryWidget = CreateWidget<UMW_VictoryWidget>(GetOwningPlayerController(), VictoryWidgetClass);
 	if (!VictoryWidget) return;
@@ -38,7 +38,7 @@ void AMW_HUD::CreateVictoryWidget()
 
 int32 AMW_HUD::GetCoinCountValue()
 {
-	if (!CharacterOverlayWidget) return -999 /* should never happen, but in case it happens we handle it in player controller */;
+	if (!CharacterOverlayWidget) return -999 /* should never happen, but in case it happens we are screwed */;
 
 	return CharacterOverlayWidget->GetCoinCountValue();
 }

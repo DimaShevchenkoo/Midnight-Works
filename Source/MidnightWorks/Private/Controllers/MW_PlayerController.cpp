@@ -69,6 +69,8 @@ void AMW_PlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
+	SetShowMouseCursor(false);
+
 	FInputModeGameOnly GameOnly;
 	SetInputMode(GameOnly);
 }
@@ -83,5 +85,9 @@ void AMW_PlayerController::DecreaseCoinsCountTextBlockValue(int32 NumToDecrease)
 	if (HUD->GetCoinCountValue() <= 0)
 	{
 		HUD->CreateVictoryWidget();
+
+		SetShowMouseCursor(true);
+		FInputModeUIOnly UIOnly;
+		SetInputMode(UIOnly);
 	}
 }

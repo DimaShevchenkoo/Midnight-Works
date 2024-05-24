@@ -10,5 +10,10 @@ UCLASS()
 class MIDNIGHTWORKS_API UMW_MainMenuOverlayWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
+protected:
+
+
+private:
+
 };
