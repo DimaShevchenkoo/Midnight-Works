@@ -3,12 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/HUD.h"
-#include "MW_MainMenuHUD.generated.h"
+#include "GameFramework/Actor.h"
+#include "MW_Coin.generated.h"
 
 UCLASS()
-class MIDNIGHTWORKS_API AMW_MainMenuHUD : public AHUD
+class MIDNIGHTWORKS_API AMW_Coin : public AActor
 {
 	GENERATED_BODY()
 	
+public:	
+	AMW_Coin();
+
 };

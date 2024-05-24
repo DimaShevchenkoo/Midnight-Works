@@ -6,9 +6,6 @@
 #include "GameFramework/HUD.h"
 #include "MW_HUD.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class MIDNIGHTWORKS_API AMW_HUD : public AHUD
 {
