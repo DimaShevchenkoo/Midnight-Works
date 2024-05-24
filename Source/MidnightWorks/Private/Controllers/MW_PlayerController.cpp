@@ -76,10 +76,7 @@ void AMW_PlayerController::BeginPlay()
 void AMW_PlayerController::DecreaseCoinsCountTextBlockValue(int32 NumToDecrease)
 {
 	HUD = HUD ? HUD : GetHUD<AMW_HUD>();
-	if (!HUD)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("HUD - nullptr"));
-		return;
-	}
+	if (!HUD) return;
+
 	HUD->DecreaseCoinsCountTextBlockValue(NumToDecrease);
 }

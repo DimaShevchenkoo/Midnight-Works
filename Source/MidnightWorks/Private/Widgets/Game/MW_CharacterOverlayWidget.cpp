@@ -2,6 +2,18 @@
 
 #include "Widgets/Game/MW_CharacterOverlayWidget.h"
 #include "Components/TextBlock.h"
+#include "GameState/MW_GameState.h"
+#include "Kismet/GameplayStatics.h"
+
+void UMW_CharacterOverlayWidget::NativeConstruct()
+{
+	Super::NativeConstruct();
+
+	auto GS = Cast<AMW_GameState>(UGameplayStatics::GetGameState(this));
+	if (!GS) return;
+
+	CoinsCountTextBlock->SetText(FText::FromString(FString::FromInt(GS->GetCoinsArraySize())));
+}
 
 void UMW_CharacterOverlayWidget::DecreaseCoinsCountTextBlockValue(int32 NewValue)
 {

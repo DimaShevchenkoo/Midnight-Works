@@ -19,6 +19,9 @@ public:
 
 	int32 GetCoinCountValue();
 
+protected:
+	virtual void NativeConstruct() override;
+
 private:
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* CoinsCountTextBlock;

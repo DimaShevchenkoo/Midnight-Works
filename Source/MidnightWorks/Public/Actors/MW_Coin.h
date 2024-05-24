@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "MW_Coin.generated.h"
 
+class AMW_GameState;
 class UBoxComponent;
 
 UCLASS()
@@ -29,4 +30,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UBoxComponent* PickupBoxCollision;
+
+	UPROPERTY()
+	AMW_GameState* GS;
 };

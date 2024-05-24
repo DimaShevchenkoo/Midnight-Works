@@ -11,45 +11,26 @@ void AMW_HUD::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (!GetOwningPlayerController())
-	{
-		UE_LOG(LogTemp, Warning, TEXT("GetOwningPlayerController() - nullptr"))
-		return;
-	}
+	if (!GetOwningPlayerController()) return;
 
 	CharacterOverlayWidget = CreateWidget<UMW_CharacterOverlayWidget>(GetOwningPlayerController(), CharacterOverlayWidgetClass);
-	if (!CharacterOverlayWidget)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("CharacterOverlayWidget - nullptr"))
-		return;
-	}
+	if (!CharacterOverlayWidget) return;
 
 	CharacterOverlayWidget->AddToViewport();
 }
 
 void AMW_HUD::DecreaseCoinsCountTextBlockValue(int32 NumToDecrease)
 {
-	if (!CharacterOverlayWidget)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("CharacterOverlayWidget - nullptr"))
-		return;
-	}
+	if (!CharacterOverlayWidget) return;
+
 	CharacterOverlayWidget->DecreaseCoinsCountTextBlockValue(NumToDecrease);
 
 	if (CharacterOverlayWidget->GetCoinCountValue() <= 0)
 	{
-		if (!GetOwningPlayerController())
-		{
-			UE_LOG(LogTemp, Warning, TEXT("GetOwningPlayerController() - nullptr"))
-			return;
-		}
+		if (!GetOwningPlayerController()) return;
 
 		VictoryWidget = CreateWidget<UMW_VictoryWidget>(GetOwningPlayerController(), VictoryWidgetClass);
-		if (!VictoryWidget)
-		{
-			UE_LOG(LogTemp, Warning, TEXT("VictoryWidget - nullptr"))
-			return;
-		}
+		if (!VictoryWidget) return;
 
 		VictoryWidget->AddToViewport();
 	}

@@ -5,6 +5,8 @@
 #include "Characters/MW_PlayerCharacter.h"
 #include "Components/BoxComponent.h"
 #include "Controllers/MW_PlayerController.h"
+#include "GameState/MW_GameState.h"
+#include "Kismet/GameplayStatics.h"
 
 AMW_Coin::AMW_Coin()
 {
@@ -20,6 +22,9 @@ AMW_Coin::AMW_Coin()
 void AMW_Coin::BeginPlay()
 {
 	Super::BeginPlay();
+
+	GS = Cast<AMW_GameState>(UGameplayStatics::GetGameState(this));
+	if (!GS) return;
 
 	PickupBoxCollision->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::PickupCoinOnOverlapBegin);
 }
@@ -37,6 +42,9 @@ void AMW_Coin::PickupCoinOnOverlapBegin(UPrimitiveComponent* OverlappedComponent
 
 		PC->DecreaseCoinsCountTextBlockValue(1);
 		//TODO play animation
+
+		if (!GS) return;
+		GS->RemoveCoinFromArray(this);
 
 		Destroy();
 	}
