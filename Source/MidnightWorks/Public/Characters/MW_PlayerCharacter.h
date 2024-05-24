@@ -17,10 +17,17 @@ class MIDNIGHTWORKS_API AMW_PlayerCharacter : public ACharacter
 public:
 	AMW_PlayerCharacter();
 
+	FVector GetSpawnLocation() { return StartPosition; }
+
+protected:
+	virtual void BeginPlay() override;
+
 private:
 	UPROPERTY(EditDefaultsOnly)
 	USpringArmComponent* SpringArmComponent;
 
 	UPROPERTY(EditDefaultsOnly)
 	UCameraComponent* CameraComponent;
+
+	FVector StartPosition;
 };

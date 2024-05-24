@@ -16,6 +16,7 @@ class MIDNIGHTWORKS_API UMW_CharacterOverlayWidget : public UUserWidget
 public:
 	void ConvertTextBlockToString(int32& OutValue);
 	void DecreaseCoinsCountTextBlockValue(int32 NewValue);
+	void ShowDeathTransition();
 
 	int32 GetCoinCountValue();
 
@@ -25,4 +26,7 @@ protected:
 private:
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* CoinsCountTextBlock;
+
+	UPROPERTY(meta=(BindWidgetAnim), Transient)
+	UWidgetAnimation* DeathTransition;
 };

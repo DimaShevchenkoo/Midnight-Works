@@ -36,6 +36,13 @@ void AMW_HUD::CreateVictoryWidget()
 	VictoryWidget->AddToViewport();
 }
 
+void AMW_HUD::ShowDeathTransition()
+{
+	if (!CharacterOverlayWidget) return;
+
+	CharacterOverlayWidget->ShowDeathTransition();
+}
+
 int32 AMW_HUD::GetCoinCountValue()
 {
 	if (!CharacterOverlayWidget) return -999 /* should never happen, but in case it happens we are screwed */;

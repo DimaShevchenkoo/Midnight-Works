@@ -19,6 +19,7 @@ class MIDNIGHTWORKS_API AMW_PlayerController : public APlayerController
 
 public:
 	void DecreaseCoinsCountTextBlockValue(int32 NumToDecrease);
+	void ShowDeathTransition();
 
 protected:
 	void Move(const FInputActionValue& Value);
@@ -30,7 +31,6 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-
 	UPROPERTY(EditAnywhere)
 	UInputMappingContext* DefaultIMC;
 

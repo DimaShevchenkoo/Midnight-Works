@@ -15,3 +15,10 @@ AMW_PlayerCharacter::AMW_PlayerCharacter()
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>("Camera");
 	CameraComponent->SetupAttachment(SpringArmComponent);
 }
+
+void AMW_PlayerCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	StartPosition = GetActorLocation();
+}

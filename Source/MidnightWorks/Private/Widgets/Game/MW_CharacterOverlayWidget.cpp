@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Widgets/Game/MW_CharacterOverlayWidget.h"
+
+#include "Animation/WidgetAnimation.h"
 #include "Components/TextBlock.h"
 #include "GameState/MW_GameState.h"
 #include "Kismet/GameplayStatics.h"
@@ -25,6 +27,17 @@ void UMW_CharacterOverlayWidget::DecreaseCoinsCountTextBlockValue(int32 NewValue
 	FString CoinsLeftText = FString::FromInt(NewCoinsCount) + " Coins Left!";
 
 	CoinsCountTextBlock->SetText(FText::FromString(CoinsLeftText));
+}
+
+void UMW_CharacterOverlayWidget::ShowDeathTransition()
+{
+	PlayAnimation(DeathTransition);
+
+	FTimerHandle PlayAnimationBackwardsHandle;
+	GetWorld()->GetTimerManager().SetTimer(PlayAnimationBackwardsHandle, FTimerDelegate::CreateWeakLambda(this, [this]()
+	{
+		PlayAnimation(DeathTransition, 0.f, 1, EUMGSequencePlayMode::Reverse);
+	}), DeathTransition->GetEndTime(), false);
 }
 
 int32 UMW_CharacterOverlayWidget::GetCoinCountValue()

@@ -17,6 +17,7 @@ class MIDNIGHTWORKS_API AMW_HUD : public AHUD
 public:
 	void DecreaseCoinsCountTextBlockValue(int32 NumToDecrease);
 	void CreateVictoryWidget();
+	void ShowDeathTransition();
 
 	int32 GetCoinCountValue();
 

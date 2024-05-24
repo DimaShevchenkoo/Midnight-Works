@@ -86,8 +86,18 @@ void AMW_PlayerController::DecreaseCoinsCountTextBlockValue(int32 NumToDecrease)
 	{
 		HUD->CreateVictoryWidget();
 
+		FlushPressedKeys();
+
 		SetShowMouseCursor(true);
 		FInputModeUIOnly UIOnly;
 		SetInputMode(UIOnly);
 	}
+}
+
+void AMW_PlayerController::ShowDeathTransition()
+{
+	HUD = HUD ? HUD : GetHUD<AMW_HUD>();
+	if (!HUD) return;
+
+	HUD->ShowDeathTransition();
 }
