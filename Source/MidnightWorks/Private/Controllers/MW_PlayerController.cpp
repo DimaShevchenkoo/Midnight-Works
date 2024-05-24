@@ -79,4 +79,9 @@ void AMW_PlayerController::DecreaseCoinsCountTextBlockValue(int32 NumToDecrease)
 	if (!HUD) return;
 
 	HUD->DecreaseCoinsCountTextBlockValue(NumToDecrease);
+
+	if (HUD->GetCoinCountValue() <= 0)
+	{
+		HUD->CreateVictoryWidget();
+	}
 }

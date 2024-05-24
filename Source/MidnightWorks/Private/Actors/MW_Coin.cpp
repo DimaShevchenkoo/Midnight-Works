@@ -25,6 +25,7 @@ void AMW_Coin::BeginPlay()
 
 	GS = Cast<AMW_GameState>(UGameplayStatics::GetGameState(this));
 	if (!GS) return;
+	GS->AddCoinToArray(this);
 
 	PickupBoxCollision->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::PickupCoinOnOverlapBegin);
 }

@@ -16,6 +16,9 @@ class MIDNIGHTWORKS_API AMW_HUD : public AHUD
 
 public:
 	void DecreaseCoinsCountTextBlockValue(int32 NumToDecrease);
+	void CreateVictoryWidget();
+
+	int32 GetCoinCountValue();
 
 protected:
 	virtual void BeginPlay() override;

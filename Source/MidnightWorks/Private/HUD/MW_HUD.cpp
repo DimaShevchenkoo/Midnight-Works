@@ -24,14 +24,21 @@ void AMW_HUD::DecreaseCoinsCountTextBlockValue(int32 NumToDecrease)
 	if (!CharacterOverlayWidget) return;
 
 	CharacterOverlayWidget->DecreaseCoinsCountTextBlockValue(NumToDecrease);
+}
 
-	if (CharacterOverlayWidget->GetCoinCountValue() <= 0)
-	{
-		if (!GetOwningPlayerController()) return;
+void AMW_HUD::CreateVictoryWidget()
+{
+	if (!GetOwningPlayerController()) return;
 
-		VictoryWidget = CreateWidget<UMW_VictoryWidget>(GetOwningPlayerController(), VictoryWidgetClass);
-		if (!VictoryWidget) return;
+	VictoryWidget = CreateWidget<UMW_VictoryWidget>(GetOwningPlayerController(), VictoryWidgetClass);
+	if (!VictoryWidget) return;
 
-		VictoryWidget->AddToViewport();
-	}
+	VictoryWidget->AddToViewport();
+}
+
+int32 AMW_HUD::GetCoinCountValue()
+{
+	if (!CharacterOverlayWidget) return -999 /* should never happen, but in case it happens we handle it in player controller */;
+
+	return CharacterOverlayWidget->GetCoinCountValue();
 }

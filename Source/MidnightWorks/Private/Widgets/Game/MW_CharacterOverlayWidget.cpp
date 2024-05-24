@@ -12,7 +12,7 @@ void UMW_CharacterOverlayWidget::NativeConstruct()
 	auto GS = Cast<AMW_GameState>(UGameplayStatics::GetGameState(this));
 	if (!GS) return;
 
-	CoinsCountTextBlock->SetText(FText::FromString(FString::FromInt(GS->GetCoinsArraySize())));
+	CoinsCountTextBlock->SetText(FText::FromString(FString::FromInt(GS->GetCoinsArraySize() - 1 /* cuz array starts with the 0 */) + " Coins Left!"));
 }
 
 void UMW_CharacterOverlayWidget::DecreaseCoinsCountTextBlockValue(int32 NewValue)
