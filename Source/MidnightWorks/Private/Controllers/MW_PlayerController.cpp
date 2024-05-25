@@ -75,23 +75,23 @@ void AMW_PlayerController::BeginPlay()
 	SetInputMode(GameOnly);
 }
 
+void AMW_PlayerController::CreateVictoryVidget()
+{
+	HUD->CreateVictoryWidget();
+
+	FlushPressedKeys();
+
+	SetShowMouseCursor(true);
+	FInputModeUIOnly UIOnly;
+	SetInputMode(UIOnly);
+}
+
 void AMW_PlayerController::DecreaseCoinsCountTextBlockValue(int32 NumToDecrease)
 {
 	HUD = HUD ? HUD : GetHUD<AMW_HUD>();
 	if (!HUD) return;
 
 	HUD->DecreaseCoinsCountTextBlockValue(NumToDecrease);
-
-	if (HUD->GetCoinCountValue() <= 0)
-	{
-		HUD->CreateVictoryWidget();
-
-		FlushPressedKeys();
-
-		SetShowMouseCursor(true);
-		FInputModeUIOnly UIOnly;
-		SetInputMode(UIOnly);
-	}
 }
 
 void AMW_PlayerController::ShowDeathTransition()

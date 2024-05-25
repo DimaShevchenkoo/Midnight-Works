@@ -23,6 +23,8 @@ public:
 	void ShowSpeedBoosterVisibility(bool bVisible, float BoosterVisibilityTime);
 	void ShowJumpBoosterVisibility(bool bVisible, float BoosterVisibilityTime);
 
+	void CreateVictoryVidget();
+
 protected:
 	void Move(const FInputActionValue& Value);
 	void RotateCamera(const FInputActionValue& Value);

@@ -2,18 +2,17 @@
 
 #include "GameState/MW_GameState.h"
 
-void AMW_GameState::AddCoinToArray(AMW_CoinPickup* CoinToAdd)
+void AMW_GameState::AddCoinToArray(int32 NumCoinsToAdd)
 {
-	if (CoinToAdd)
-	{
-		CoinsArray.AddUnique(CoinToAdd);
-	}
+	CoinsLeft += NumCoinsToAdd;
 }
 
-void AMW_GameState::RemoveCoinFromArray(AMW_CoinPickup* CoinToRemove)
+void AMW_GameState::RemoveCoinFromArray(int32 NumCoinsToRemove)
 {
-	if (CoinToRemove)
+	CoinsLeft -= NumCoinsToRemove;
+
+	if (CoinsLeft <= 0)
 	{
-		CoinsArray.Remove(CoinToRemove);
+		AllKeysAcquiredDelegate.Broadcast();
 	}
 }

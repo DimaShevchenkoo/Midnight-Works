@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Actors/MW_CoinPickup.h"
-
 #include "Characters/MW_PlayerCharacter.h"
 #include "Components/BoxComponent.h"
 #include "Controllers/MW_PlayerController.h"
@@ -14,7 +13,7 @@ void AMW_CoinPickup::BeginPlay()
 
 	GS = Cast<AMW_GameState>(UGameplayStatics::GetGameState(this));
 	if (!GS) return;
-	GS->AddCoinToArray(this);
+	GS->AddCoinToArray(1);
 
 	PickupBoxCollision->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::PickupOnOverlapBegin);
 }
@@ -34,7 +33,7 @@ void AMW_CoinPickup::PickupOnOverlapBegin(UPrimitiveComponent* OverlappedCompone
 		//TODO play animation
 
 		if (!GS) return;
-		GS->RemoveCoinFromArray(this);
+		GS->RemoveCoinFromArray(1);
 
 		Destroy();
 	}

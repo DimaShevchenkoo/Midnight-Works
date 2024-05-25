@@ -8,17 +8,20 @@
 
 class AMW_CoinPickup;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAllKeysAcquiredDelegate);
+
 UCLASS()
 class MIDNIGHTWORKS_API AMW_GameState : public AGameStateBase
 {
 	GENERATED_BODY()
 
 public:
-	void AddCoinToArray(AMW_CoinPickup* CoinToAdd);
-	void RemoveCoinFromArray(AMW_CoinPickup* CoinToRemove);
+	void AddCoinToArray(int32 NumCoinsToAdd);
+	void RemoveCoinFromArray(int32 NumCoinsToRemove);
 
-	int32 GetCoinsArraySize() { return CoinsArray.Max(); }
+	int32 GetCoinsLeftCount() const { return CoinsLeft; }
 
+	FOnAllKeysAcquiredDelegate AllKeysAcquiredDelegate;
 private:
-	TArray<AMW_CoinPickup*> CoinsArray;
+	int32 CoinsLeft;
 };
