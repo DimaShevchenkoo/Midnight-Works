@@ -26,6 +26,9 @@ protected:
 	UPROPERTY(EditAnywhere)
 	UBoxComponent* PickupBoxCollision;
 
+	UPROPERTY(EditAnywhere)
+	USoundBase* PickupSound;
+
 	UPROPERTY()
 	AMW_PlayerCharacter* PlayerCharacter;
 

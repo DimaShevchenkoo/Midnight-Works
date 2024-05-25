@@ -5,6 +5,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "Characters/MW_PlayerCharacter.h"
 #include "HUD/MW_HUD.h"
+#include "Kismet/GameplayStatics.h"
 
 void AMW_PlayerController::SetupInputComponent()
 {
@@ -84,6 +85,11 @@ void AMW_PlayerController::CreateVictoryVidget()
 	SetShowMouseCursor(true);
 	FInputModeUIOnly UIOnly;
 	SetInputMode(UIOnly);
+
+	if (VictorySound)
+	{
+		UGameplayStatics::PlaySound2D(this, VictorySound);
+	}
 }
 
 void AMW_PlayerController::DecreaseCoinsCountTextBlockValue(int32 NumToDecrease)

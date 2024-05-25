@@ -35,6 +35,10 @@ void AMW_CoinPickup::PickupOnOverlapBegin(UPrimitiveComponent* OverlappedCompone
 		if (!GS) return;
 		GS->RemoveCoinFromArray(1);
 
+		if (PickupSound)
+		{
+			UGameplayStatics::PlaySound2D(this, PickupSound);
+		}
 		Destroy();
 	}
 }

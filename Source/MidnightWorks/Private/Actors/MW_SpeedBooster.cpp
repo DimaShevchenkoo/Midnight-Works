@@ -5,6 +5,7 @@
 #include "Components/BoxComponent.h"
 #include "Controllers/MW_PlayerController.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 AMW_SpeedBooster::AMW_SpeedBooster()
 {
@@ -41,6 +42,11 @@ void AMW_SpeedBooster::PickupOnOverlapBegin(UPrimitiveComponent* OverlappedCompo
 		PC = PC ? PC : Cast<AMW_PlayerController>(PlayerCharacter->GetController());
 		if (!PC) return;
 		PC->ShowSpeedBoosterVisibility(true, BoosterApplyTime);
+
+		if (PickupSound)
+		{
+			UGameplayStatics::PlaySound2D(this, PickupSound);
+		}
 
 		FTimerHandle ReverseSpeedTimerHandle;
 		GetWorld()->GetTimerManager().SetTimer(ReverseSpeedTimerHandle, FTimerDelegate::CreateWeakLambda(this, [this]()

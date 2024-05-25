@@ -6,6 +6,7 @@
 #include "Components/BoxComponent.h"
 #include "Controllers/MW_PlayerController.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 AMW_JumpBooster::AMW_JumpBooster()
 {
@@ -43,6 +44,11 @@ void AMW_JumpBooster::PickupOnOverlapBegin(UPrimitiveComponent* OverlappedCompon
 		if (!PC) return;
 		PC->ShowJumpBoosterVisibility(true, BoosterApplyTime);
 
+		if (PickupSound)
+		{
+			UGameplayStatics::PlaySound2D(this, PickupSound);
+		}
+		
 		FTimerHandle ReverseJumpTimerHandle;
 		GetWorld()->GetTimerManager().SetTimer(ReverseJumpTimerHandle, FTimerDelegate::CreateWeakLambda(this, [this]()
 		{

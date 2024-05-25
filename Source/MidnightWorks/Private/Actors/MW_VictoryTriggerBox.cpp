@@ -41,5 +41,5 @@ void AMW_VictoryTriggerBox::EndGameTrigger(UPrimitiveComponent* OverlappedCompon
 
 void AMW_VictoryTriggerBox::OpenDoor()
 {
-	
+	DoorMeshComponent->DestroyComponent();
 }

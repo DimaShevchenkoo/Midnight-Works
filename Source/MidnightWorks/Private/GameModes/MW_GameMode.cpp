@@ -19,7 +19,7 @@ void ADW_GameMode::OpenDoors()
 {
 	for (TActorIterator<AMW_VictoryTriggerBox> ActorIterator(GetWorld()); ActorIterator; ++ActorIterator)
 	{
-		if (!*ActorIterator) return;
+		if (!*ActorIterator) continue;
 
 		ActorIterator->OpenDoor();
 	}

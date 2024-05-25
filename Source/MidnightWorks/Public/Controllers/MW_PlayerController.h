@@ -47,6 +47,9 @@ private:
 	UPROPERTY(EditAnywhere)
 	UInputAction* JumpAction;
 
+	UPROPERTY(EditAnywhere)
+	USoundBase* VictorySound;
+
 	UPROPERTY()
 	AMW_PlayerCharacter* PlayerCharacter;
 
