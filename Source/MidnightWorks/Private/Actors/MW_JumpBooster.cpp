@@ -22,17 +22,23 @@ void AMW_JumpBooster::BeginPlay()
 void AMW_JumpBooster::PickupOnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (bBoosterActivated) return;
-
 	if (OtherActor->ActorHasTag("Player"))
 	{
 		PlayerCharacter = PlayerCharacter ? PlayerCharacter : Cast<AMW_PlayerCharacter>(OtherActor);
 		if (!PlayerCharacter) return;
+		
+		if (PlayerCharacter->GetJumpBoosterInUse() == true)
+		{
+			return;
+		}
+
+		PlayerCharacter->SetJumpBoosterInUse(true);
+
+		PickupMesh->SetVisibility(false);
 
 		BaseJumpHeight = PlayerCharacter->GetCharacterMovement()->JumpZVelocity;
 		PlayerCharacter->GetCharacterMovement()->JumpZVelocity = BaseJumpHeight * 5.f;
 
-		bBoosterActivated = true;
 		PC = PC ? PC : Cast<AMW_PlayerController>(PlayerCharacter->GetController());
 		if (!PC) return;
 		PC->ShowJumpBoosterVisibility(true, BoosterApplyTime);
@@ -41,6 +47,8 @@ void AMW_JumpBooster::PickupOnOverlapBegin(UPrimitiveComponent* OverlappedCompon
 		GetWorld()->GetTimerManager().SetTimer(ReverseJumpTimerHandle, FTimerDelegate::CreateWeakLambda(this, [this]()
 		{
 			PlayerCharacter->GetCharacterMovement()->JumpZVelocity = BaseJumpHeight;
+			PlayerCharacter->SetJumpBoosterInUse(false);
+
 			PC->ShowJumpBoosterVisibility(false, BoosterApplyTime);
 
 			Destroy();

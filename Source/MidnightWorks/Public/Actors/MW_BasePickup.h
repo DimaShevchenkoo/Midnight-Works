@@ -34,6 +34,4 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	float BoosterApplyTime = 5.f;
-
-	bool bBoosterActivated = false;
 };

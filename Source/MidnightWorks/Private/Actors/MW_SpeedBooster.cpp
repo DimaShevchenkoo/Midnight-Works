@@ -21,17 +21,22 @@ void AMW_SpeedBooster::BeginPlay()
 void AMW_SpeedBooster::PickupOnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (bBoosterActivated) return;
-
 	if (OtherActor->ActorHasTag("Player"))
 	{
 		PlayerCharacter = PlayerCharacter ? PlayerCharacter : Cast<AMW_PlayerCharacter>(OtherActor);
 		if (!PlayerCharacter) return;
 
+		if (PlayerCharacter->GetSpeedBoosterInUse() == true)
+		{
+			return;
+		}
+
+		PlayerCharacter->SetSpeedBoosterInUse(true);
+
+		PickupMesh->SetVisibility(false);
+
 		BaseCharacterSpeed = PlayerCharacter->GetCharacterMovement()->GetMaxSpeed();
 		PlayerCharacter->GetCharacterMovement()->MaxWalkSpeed = BaseCharacterSpeed * SpeedBoostMultiplier;
-
-		bBoosterActivated = true;
 
 		PC = PC ? PC : Cast<AMW_PlayerController>(PlayerCharacter->GetController());
 		if (!PC) return;
@@ -41,6 +46,8 @@ void AMW_SpeedBooster::PickupOnOverlapBegin(UPrimitiveComponent* OverlappedCompo
 		GetWorld()->GetTimerManager().SetTimer(ReverseSpeedTimerHandle, FTimerDelegate::CreateWeakLambda(this, [this]()
 		{
 			PlayerCharacter->GetCharacterMovement()->MaxWalkSpeed = BaseCharacterSpeed;
+			PlayerCharacter->SetSpeedBoosterInUse(false);
+
 			PC->ShowSpeedBoosterVisibility(false, BoosterApplyTime);
 
 			Destroy();

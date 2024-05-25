@@ -17,7 +17,13 @@ class MIDNIGHTWORKS_API AMW_PlayerCharacter : public ACharacter
 public:
 	AMW_PlayerCharacter();
 
-	FVector GetSpawnLocation() { return StartPosition; }
+	FVector GetSpawnLocation() const { return StartPosition; }
+
+	void SetJumpBoosterInUse(const bool bInUse) { bJumpBoosterInUse = bInUse; }
+	void SetSpeedBoosterInUse(const bool bInUse) { bSpeedBoosterInUse = bInUse; }
+
+	bool GetJumpBoosterInUse() const { return bJumpBoosterInUse; }
+	bool GetSpeedBoosterInUse() const { return bSpeedBoosterInUse; }
 
 protected:
 	virtual void BeginPlay() override;
@@ -30,4 +36,7 @@ private:
 	UCameraComponent* CameraComponent;
 
 	FVector StartPosition;
+
+	bool bJumpBoosterInUse = false;
+	bool bSpeedBoosterInUse = false;
 };

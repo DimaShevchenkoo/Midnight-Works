@@ -25,9 +25,18 @@ public:
 protected:
 	virtual void NativeConstruct() override;
 
+	UFUNCTION()
+	void UpdateBoosterTimerText(UTextBlock* BoosterTextBlock);
+
 private:
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* CoinsCountTextBlock;
+
+	UPROPERTY(meta=(BindWidget))
+	UTextBlock* JumpTimeLeftRemain;
+
+	UPROPERTY(meta=(BindWidget))
+	UTextBlock* SprintTimeLeftRemain;
 
 	UPROPERTY(meta=(BindWidgetAnim), Transient)
 	UWidgetAnimation* DeathTransition;

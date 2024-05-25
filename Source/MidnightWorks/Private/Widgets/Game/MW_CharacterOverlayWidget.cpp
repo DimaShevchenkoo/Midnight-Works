@@ -45,6 +45,9 @@ void UMW_CharacterOverlayWidget::ShowJumpBoosterVisibility(bool bVisible, float 
 	if (bVisible)
 	{
 		PlayAnimation(JumpBoosterAnimationAppear);
+
+		JumpTimeLeftRemain->SetText(FText::FromString(FString::SanitizeFloat(BoosterVisibilityTime)));
+		UpdateBoosterTimerText(JumpTimeLeftRemain);
 	}
 	else
 	{
@@ -57,11 +60,31 @@ void UMW_CharacterOverlayWidget::ShowSpeedBoosterVisibility(bool bVisible, float
 	if (bVisible)
 	{
 		PlayAnimation(SpeedBoosterAnimationAppear);
+
+		SprintTimeLeftRemain->SetText(FText::FromString(FString::SanitizeFloat(BoosterVisibilityTime)));
+		UpdateBoosterTimerText(SprintTimeLeftRemain);
 	}
 	else
 	{
 		PlayAnimation(SpeedBoosterAnimationFinish);
 	}
+}
+
+void UMW_CharacterOverlayWidget::UpdateBoosterTimerText(UTextBlock* BoosterTextBlock)
+{
+	float TimeRemaining = FCString::Atof(*BoosterTextBlock->GetText().ToString());
+	if (TimeRemaining <= 0.f)
+	{
+		BoosterTextBlock->SetVisibility(ESlateVisibility::Hidden);
+		return;
+	}
+	TimeRemaining -= 0.1f;
+	BoosterTextBlock->SetText(FText::FromString(FString::SanitizeFloat(TimeRemaining)));
+
+	FTimerHandle UpdateBoosterTimerHandle;
+	FTimerDelegate UpdateBoosterTimerDelegate = FTimerDelegate::CreateUObject(this, &ThisClass::UpdateBoosterTimerText, BoosterTextBlock);
+
+	GetWorld()->GetTimerManager().SetTimer(UpdateBoosterTimerHandle, UpdateBoosterTimerDelegate, 0.1f, false);
 }
 
 int32 UMW_CharacterOverlayWidget::GetCoinCountValue()
