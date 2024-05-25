@@ -40,6 +40,30 @@ void UMW_CharacterOverlayWidget::ShowDeathTransition()
 	}), DeathTransition->GetEndTime(), false);
 }
 
+void UMW_CharacterOverlayWidget::ShowJumpBoosterVisibility(bool bVisible, float BoosterVisibilityTime)
+{
+	if (bVisible)
+	{
+		PlayAnimation(JumpBoosterAnimationAppear);
+	}
+	else
+	{
+		PlayAnimation(JumpBoosterAnimationFinish);
+	}
+}
+
+void UMW_CharacterOverlayWidget::ShowSpeedBoosterVisibility(bool bVisible, float BoosterVisibilityTime)
+{
+	if (bVisible)
+	{
+		PlayAnimation(SpeedBoosterAnimationAppear);
+	}
+	else
+	{
+		PlayAnimation(SpeedBoosterAnimationFinish);
+	}
+}
+
 int32 UMW_CharacterOverlayWidget::GetCoinCountValue()
 {
 	int32 CoinsCount;

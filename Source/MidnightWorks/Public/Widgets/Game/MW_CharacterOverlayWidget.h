@@ -17,6 +17,8 @@ public:
 	void ConvertTextBlockToString(int32& OutValue);
 	void DecreaseCoinsCountTextBlockValue(int32 NewValue);
 	void ShowDeathTransition();
+	void ShowJumpBoosterVisibility(bool bVisible, float BoosterVisibilityTime);
+	void ShowSpeedBoosterVisibility(bool bVisible, float BoosterVisibilityTime);
 
 	int32 GetCoinCountValue();
 
@@ -29,4 +31,16 @@ private:
 
 	UPROPERTY(meta=(BindWidgetAnim), Transient)
 	UWidgetAnimation* DeathTransition;
+
+	UPROPERTY(meta=(BindWidgetAnim), Transient)
+	UWidgetAnimation* SpeedBoosterAnimationAppear;
+
+	UPROPERTY(meta=(BindWidgetAnim), Transient)
+	UWidgetAnimation* SpeedBoosterAnimationFinish;
+
+	UPROPERTY(meta=(BindWidgetAnim), Transient)
+	UWidgetAnimation* JumpBoosterAnimationAppear;
+
+	UPROPERTY(meta=(BindWidgetAnim), Transient)
+	UWidgetAnimation* JumpBoosterAnimationFinish;
 };

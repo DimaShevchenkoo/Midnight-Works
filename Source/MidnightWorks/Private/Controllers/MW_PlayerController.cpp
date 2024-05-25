@@ -101,3 +101,19 @@ void AMW_PlayerController::ShowDeathTransition()
 
 	HUD->ShowDeathTransition();
 }
+
+void AMW_PlayerController::ShowSpeedBoosterVisibility(bool bVisible, float BoosterVisibilityTime)
+{
+	HUD = HUD ? HUD : GetHUD<AMW_HUD>();
+	if (!HUD) return;
+
+	HUD->ShowSpeedBoosterVisibility(bVisible, BoosterVisibilityTime);
+}
+
+void AMW_PlayerController::ShowJumpBoosterVisibility(bool bVisible, float BoosterVisibilityTime)
+{
+	HUD = HUD ? HUD : GetHUD<AMW_HUD>();
+	if (!HUD) return;
+
+	HUD->ShowJumpBoosterVisibility(bVisible, BoosterVisibilityTime);
+}

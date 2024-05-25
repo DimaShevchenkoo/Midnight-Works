@@ -43,6 +43,20 @@ void AMW_HUD::ShowDeathTransition()
 	CharacterOverlayWidget->ShowDeathTransition();
 }
 
+void AMW_HUD::ShowJumpBoosterVisibility(bool bVisible, float BoosterVisibilityTime)
+{
+	if (!CharacterOverlayWidget) return;
+
+	CharacterOverlayWidget->ShowJumpBoosterVisibility(bVisible, BoosterVisibilityTime);
+}
+
+void AMW_HUD::ShowSpeedBoosterVisibility(bool bVisible, float BoosterVisibilityTime)
+{
+	if (!CharacterOverlayWidget) return;
+
+	CharacterOverlayWidget->ShowSpeedBoosterVisibility(bVisible, BoosterVisibilityTime);
+}
+
 int32 AMW_HUD::GetCoinCountValue()
 {
 	if (!CharacterOverlayWidget) return -999 /* should never happen, but in case it happens we are screwed */;

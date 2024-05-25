@@ -20,6 +20,8 @@ class MIDNIGHTWORKS_API AMW_PlayerController : public APlayerController
 public:
 	void DecreaseCoinsCountTextBlockValue(int32 NumToDecrease);
 	void ShowDeathTransition();
+	void ShowSpeedBoosterVisibility(bool bVisible, float BoosterVisibilityTime);
+	void ShowJumpBoosterVisibility(bool bVisible, float BoosterVisibilityTime);
 
 protected:
 	void Move(const FInputActionValue& Value);

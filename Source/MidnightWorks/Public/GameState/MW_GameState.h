@@ -6,7 +6,7 @@
 #include "GameFramework/GameStateBase.h"
 #include "MW_GameState.generated.h"
 
-class AMW_Coin;
+class AMW_CoinPickup;
 
 UCLASS()
 class MIDNIGHTWORKS_API AMW_GameState : public AGameStateBase
@@ -14,11 +14,11 @@ class MIDNIGHTWORKS_API AMW_GameState : public AGameStateBase
 	GENERATED_BODY()
 
 public:
-	void AddCoinToArray(AMW_Coin* CoinToAdd);
-	void RemoveCoinFromArray(AMW_Coin* CoinToRemove);
+	void AddCoinToArray(AMW_CoinPickup* CoinToAdd);
+	void RemoveCoinFromArray(AMW_CoinPickup* CoinToRemove);
 
 	int32 GetCoinsArraySize() { return CoinsArray.Max(); }
 
 private:
-	TArray<AMW_Coin*> CoinsArray;
+	TArray<AMW_CoinPickup*> CoinsArray;
 };

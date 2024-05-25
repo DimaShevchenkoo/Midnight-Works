@@ -18,6 +18,8 @@ public:
 	void DecreaseCoinsCountTextBlockValue(int32 NumToDecrease);
 	void CreateVictoryWidget();
 	void ShowDeathTransition();
+	void ShowJumpBoosterVisibility(bool bVisible, float BoosterVisibilityTime);
+	void ShowSpeedBoosterVisibility(bool bVisible, float BoosterVisibilityTime);
 
 	int32 GetCoinCountValue();
 
